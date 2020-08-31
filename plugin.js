@@ -20,15 +20,60 @@ function btnClick(value){
 // creating function to handle symobls and another one for numbers
 // handle symbols function
 function handleSymbols(symbol){
-    /* switch (symbol){
+    switch (symbol){
         case 'C':
             buffer = '0';
             runingTotal = 0;
             break;
-    } */
-    if(symbol === 'C'){
-        buffer = '0';
-        runingTotal = 0;
+
+        case '+':
+        case '−':
+        case '×':
+        case '÷':            
+            handleMath(symbol);
+            break;    
+    }
+}
+
+// handle math function
+function handleMath(symbol){
+    if(buffer === '0'){
+        // do nothing
+        return;
+    }
+    
+    const intBuffer = parseInt(buffer);
+
+    if(runingTotal === 0) {
+        runingTotal = intBuffer; // whatever number we type , will be assigned to the intBuffer
+    } else {
+        flushOperation(intBuffer);
+    }
+
+    previousOperator = symbol;
+
+    buffer = '0';
+}
+
+// flush operation function
+function flushOperation(intBuffer){
+    switch(previousOperator){
+        // adding
+        case '+':
+            runingTotal += intBuffer;
+            break;
+        // subtracting
+            case '−':
+            runingTotal -= intBuffer;
+            break;
+        // multiplication
+            case '×':
+            runingTotal *= intBuffer;
+            break;
+        // dividing
+            case '÷':
+            runingTotal /= intBuffer;
+            break
     }
 }
 
