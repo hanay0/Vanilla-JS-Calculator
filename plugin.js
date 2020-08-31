@@ -8,7 +8,7 @@ let buffer = '0';
 /*previous operator is to store the choosen operator */
 let previousOperator;
 
-// grab the screen where to show the numbers
+// grab the screen where the number being shown
 const screen = document.querySelector('.screen');
 
 function btnClick(value){
@@ -23,6 +23,16 @@ function handleSymbols(symbol){
     switch (symbol){
         case 'C':
             buffer = '0';
+            runingTotal = 0;
+            break;
+        case '=':
+            if(previousOperator === null){
+                // need two numbers to do math
+                return;
+            }
+            flushOperation(parseInt(buffer));
+            previousOperator = null;
+            buffer = runingTotal;
             runingTotal = 0;
             break;
 
