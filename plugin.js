@@ -13,17 +13,32 @@ const screen = document.querySelector('.screen');
 
 function btnClick(value){
     isNaN(value) ? handleSymbols(value) : handleNumbers(value); 
+    // get this line here to rerendering the screen after each click
+    screen.innerText = buffer; //showing what we type inside the screen of the calculator 
 }
 
 // creating function to handle symobls and another one for numbers
-function handleSymbols(symbol){}
+// handle symbols function
+function handleSymbols(symbol){
+    /* switch (symbol){
+        case 'C':
+            buffer = '0';
+            runingTotal = 0;
+            break;
+    } */
+    if(symbol === 'C'){
+        buffer = '0';
+        runingTotal = 0;
+    }
+}
+
+//handle numbers function
 function handleNumbers(numberString){// [numberString] refers to a number but it stills viewed as a string
     if(buffer === '0') {
       buffer = numberString;  
     } else {
         buffer += numberString;
     }
-    screen.innerText = buffer; //showing what we type inside the screen of the calculator 
 } 
 
 // creating init function which we will call it later to set up something
